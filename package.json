@@ -1,0 +1,21 @@
+{
+    "name": "hostedgraphite",
+    "version": "0.1.0",
+    "description": "Simple nodejs client for HostedGraphite",
+    "dependencies": {
+    },
+    "author": {
+        "name": "Nacho Soto"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/NachoSoto/node-hostedgraphite.git"
+    },
+    "licenses": {
+        "type": "MIT",
+        "url": "http://github.com/NachoSoto/node-hostedgraphite/raw/master/LICENSE"
+    },
+    "main": "./graphite",
+    "readmeFilename": "README.md",
+    "homepage": "https://github.com/NachoSoto/node-hostedgraphite.git"
+}
