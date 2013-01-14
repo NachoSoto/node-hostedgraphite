@@ -10,8 +10,16 @@ var Graphite = function(apiKey) {
 	this.client = dgram.createSocket('udp4');
 };
 
-Graphite.prototype.sendMetric = function(name, value) {
+Graphite.prototype.sendMetric = function(name, count, timestamp) {
 	var metrics = {};
+	var value;
+
+	if (timestamp) {
+		value = [count, timestamp];
+	} else {
+		value = count;
+	}
+
 	metrics[name] = value;
 
 	this.sendMetrics(metrics);
@@ -26,7 +34,19 @@ Graphite.prototype.sendMetrics = function(metrics) {
 
 		metricNames.forEach(function(key) {
 			var value = metrics[key];
-			message += apiKey + '.' + key + ' ' + value + '\n';
+
+			var count, 
+				timestamp;
+
+			if (Array.isArray(value)) {
+				count = value[0];
+				timestamp = value[1];
+			} else {
+				count = value;
+				timestamp = '';
+			}
+
+			message += apiKey + '.' + key + ' ' + value + ' ' + timestamp + '\n';
 		});
 
 		message = new Buffer(message);
