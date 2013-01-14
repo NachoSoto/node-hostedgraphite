@@ -11,48 +11,45 @@ var Graphite = function(apiKey) {
 };
 
 Graphite.prototype.sendMetric = function(name, count, timestamp) {
-	var metrics = {};
-	var value;
-
-	if (timestamp) {
-		value = [count, timestamp];
-	} else {
-		value = count;
-	}
-
-	metrics[name] = value;
+	var metrics = {
+		name: name,
+		count: count,
+		timestamp: timestamp, 
+	};
 
 	this.sendMetrics(metrics);
 };
 
 Graphite.prototype.sendMetrics = function(metrics) {
-	var metricNames = Object.keys(metrics);
+	if (!Array.isArray(metrics)) {
+		var metricsArray;
 
-	if (metricNames.length > 0) {
-		var message = '',
-			apiKey = this.apiKey;
+		var metricNames = Object.keys(metrics);
 
 		metricNames.forEach(function(key) {
-			var value = metrics[key];
-
-			var count, 
-				timestamp;
-
-			if (Array.isArray(value)) {
-				count = value[0];
-				timestamp = value[1];
-			} else {
-				count = value;
-				timestamp = '';
-			}
-
-			message += apiKey + '.' + key + ' ' + value + ' ' + timestamp + '\n';
+			metricsArray.push({
+				name: key,
+				count: metrics[key],
+			});
 		});
 
-		message = new Buffer(message);
-
-		this.client.send(message, 0, message.length, this.port, this.host);
+		metrics = metricsArray;
 	}
+	
+	var message = '',
+		apiKey = this.apiKey;
+
+	metrics.forEach(function(metricObject) {
+		var key = metricObject.name,
+			value = metricObject.count.,
+			timestamp = metricObject.timestamp || '';
+
+		message += apiKey + '.' + key + ' ' + value + ' ' + timestamp + '\n';
+	});
+
+	message = new Buffer(message);
+
+	this.client.send(message, 0, message.length, this.port, this.host);
 };
 
 module.exports = Graphite;

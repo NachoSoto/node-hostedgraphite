@@ -16,9 +16,21 @@ graphite.sendMetrics({
     'metricName.metricTwo': 53,
     'someOtherMetric': 1,
 });
-graphite.sendMetrics({
-    'metricName.metricOne': [10, 1358193723],
-    'metricName.metricTwo': [53, 1358193892],
-    'someOtherMetric':      [1, 1358199265],
-});
+graphite.sendMetrics([
+    {
+        'name'      : 'metricName.metricOne',
+        'count'     : 10,
+        'timestamp' : 1358193723,
+    },
+    {
+        'name'      : 'metricName.metricTwo',
+        'count'     : 53,
+        'timestamp' : 1358193892,
+    },
+    {
+        'name'      : 'someOtherMetric',
+        'count'     : 1,
+        'timestamp' : 1358199265,
+    },
+]);
 ```
