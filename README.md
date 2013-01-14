@@ -15,4 +15,9 @@ graphite.sendMetrics({
     'metricName.metricTwo': 53,
     'someOtherMetric': 1,
 });
+graphite.sendMetrics({
+    'metricName.metricOne': [10, 1358193723],
+    'metricName.metricTwo': [53, 1358193892],
+    'someOtherMetric':      [1, 1358199265],
+});
 ```

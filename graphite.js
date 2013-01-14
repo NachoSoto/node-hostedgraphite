@@ -26,7 +26,24 @@ Graphite.prototype.sendMetrics = function(metrics) {
 
 		metricNames.forEach(function(key) {
 			var value = metrics[key];
-			message += apiKey + '.' + key + ' ' + value + '\n';
+
+			var count, 
+				timestamp;
+
+			if (Array.isArray(value)) {
+				count = value[0];
+				timestamp = value[1];
+			} else {
+				count = value;
+			}
+
+			message += apiKey + '.' + key + ' ' + value;
+
+			if (timestamp) {
+				message += ' ' + timestamp;
+			}
+
+			message += "\n";
 		});
 
 		message = new Buffer(message);
