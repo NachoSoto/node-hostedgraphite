@@ -32,7 +32,7 @@ Graphite.prototype.sendMetrics = function(metrics) {
 
 			if (Array.isArray(value)) {
 				count = value[0];
-				timestamp = value[1];
+				timestamp = ' ' + value[1];
 			} else {
 				count = value;
 			}
@@ -40,7 +40,7 @@ Graphite.prototype.sendMetrics = function(metrics) {
 			message += apiKey + '.' + key + ' ' + value;
 
 			if (timestamp) {
-				message += ' ' + timestamp;
+				message += timestamp;
 			}
 
 			message += "\n";
