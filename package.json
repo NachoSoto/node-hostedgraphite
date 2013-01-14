@@ -1,6 +1,6 @@
 {
     "name": "hostedgraphite",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Simple nodejs client for HostedGraphite",
     "dependencies": {
     },
