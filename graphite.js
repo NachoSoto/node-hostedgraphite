@@ -41,7 +41,7 @@ Graphite.prototype.sendMetrics = function(metrics) {
 
 	metrics.forEach(function(metricObject) {
 		var key = metricObject.name,
-			value = metricObject.count.,
+			value = metricObject.count,
 			timestamp = metricObject.timestamp || '';
 
 		message += apiKey + '.' + key + ' ' + value + ' ' + timestamp + '\n';
