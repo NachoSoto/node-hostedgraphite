@@ -40,9 +40,9 @@ Graphite.prototype.sendMetrics = function(metrics) {
 		apiKey = this.apiKey;
 
 	metrics.forEach(function(metricObject) {
-		var key = metricObject['name'],
-			value = metricObject['count'],
-			timestamp = metricObject['timestamp'] || '';
+		var key = metricObject.name,
+			value = metricObject.count.,
+			timestamp = metricObject.timestamp || '';
 
 		message += apiKey + '.' + key + ' ' + value + ' ' + timestamp + '\n';
 	});
