@@ -13,7 +13,7 @@ var Graphite = function(apiKey) {
 Graphite.prototype.sendMetric = function(name, count, timestamp) {
 	var metrics = {
 		"name" : key,
-		"count" : metrics[key],
+		"count" : count,
 		"timestamp" : timestamp, 
 	};
 
