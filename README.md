@@ -10,6 +10,7 @@ var Graphite = require('hostedgraphite');
 var graphite = new Graphite(API_KEY);
 
 graphite.sendMetric('metricName.metricOne', 10);
+graphite.sendMetric('metricName.metricOne', 10, 1358193723);
 graphite.sendMetrics({
     'metricName.metricOne': 10,
     'metricName.metricTwo': 53,

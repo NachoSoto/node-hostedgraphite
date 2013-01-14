@@ -10,8 +10,16 @@ var Graphite = function(apiKey) {
 	this.client = dgram.createSocket('udp4');
 };
 
-Graphite.prototype.sendMetric = function(name, value) {
+Graphite.prototype.sendMetric = function(name, count, timestamp) {
 	var metrics = {};
+	var value;
+
+	if (timestamp) {
+		value = [count, timestamp];
+	} else {
+		value = count;
+	}
+
 	metrics[name] = value;
 
 	this.sendMetrics(metrics);
