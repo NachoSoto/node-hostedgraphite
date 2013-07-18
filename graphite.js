@@ -22,7 +22,7 @@ Graphite.prototype.sendMetric = function(name, count, timestamp) {
 
 Graphite.prototype.sendMetrics = function(metrics) {
 	if (!Array.isArray(metrics)) {
-		var metricsArray;
+		var metricsArray = [];
 
 		var metricNames = Object.keys(metrics);
 
